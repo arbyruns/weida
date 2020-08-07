@@ -21,34 +21,34 @@ struct Lifts: View {
             Color.black.opacity(active ? 0.5 : 0)
                 .animation(.linear)
 //                .edgesIgnoringSafeArea(.all)
-            ScrollView {
-                VStack (spacing: 30) {
-                    ForEach(lifts.indices, id: \.self) { index in
-                        GeometryReader { geometry in
-                            //we need to get the state from Courseview component and will need to change the frame of geometry reader
-                            LiftsView(
-                                show: self.$lifts[index].show,
-                                lift : self.lifts[index],
-                                active: self.$active,
-                                index: index,
-                                activeIndex: self.$activeIndex
-                            )//we had self because we're in the geometry reader. We target an index in the array courses
-                                .offset(y: self.lifts[index].show ? -geometry.frame(in: .global).minY : 0).opacity(self.activeIndex != index && self.active ? 0 : 1) //miny is the position top of card 2 to top.  Is card2 in full screen, if yes than expand to top using minY position to offset it
-                                .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
-                                .offset(x: self.activeIndex != index && self.active ? screen.width : 0)
-                        }
-                            //need to set the fram for geometry reader
-                            .frame(height: 280)
-                            .frame(maxWidth: self.lifts[index].show ? .infinity : screen.width - 0.1) //need self because we're in a for each
-                            .zIndex(self.lifts[index].show ? 1 : 0)
+                ScrollView {
+                    VStack (spacing: 30) {
+                        ForEach(lifts.indices, id: \.self) { index in
+                            GeometryReader { geometry in
+                                //we need to get the state from Courseview component and will need to change the frame of geometry reader
+                                LiftsView(
+                                    show: self.$lifts[index].show,
+                                    lift : self.lifts[index],
+                                    active: self.$active,
+                                    index: index,
+                                    activeIndex: self.$activeIndex
+                                )//we had self because we're in the geometry reader. We target an index in the array courses
+                                    .offset(y: self.lifts[index].show ? -geometry.frame(in: .global).minY : 0).opacity(self.activeIndex != index && self.active ? 0 : 1) //miny is the position top of card 2 to top.  Is card2 in full screen, if yes than expand to top using minY position to offset it
+                                    .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
+                                    .offset(x: self.activeIndex != index && self.active ? screen.width : 0)
+                            }
+                                //need to set the fram for geometry reader
+                                .frame(height: 280)
+                                .frame(maxWidth: self.lifts[index].show ? .infinity : screen.width - 0.1) //need self because we're in a for each
+                                .zIndex(self.lifts[index].show ? 1 : 0)
 
+                        }
                     }
+                    .frame(width: screen.width)
+                    .animation(.spring(response: 0.7, dampingFraction: 0.9, blendDuration: 0))
                 }
-                .frame(width: screen.width)
-                .animation(.spring(response: 0.7, dampingFraction: 0.9, blendDuration: 0))
-            }
-                //            .statusBar(hidden: active ? true : false) //we hide the statusbar
-                .animation(.linear)
+                    //            .statusBar(hidden: active ? true : false) //we hide the statusbar
+                    .animation(.linear)
         }
         .navigationBarTitle("Classic Lifts")
         .navigationBarHidden(active ? true : false)
@@ -57,8 +57,8 @@ struct Lifts: View {
 
 struct LiftsView_Previews: PreviewProvider {
     static var previews: some View {
-//        Lifts()
-        Lifts().environment(\.colorScheme, .dark)
+        Lifts()
+//        Lifts().environment(\.colorScheme, .dark)
     }
 }
 

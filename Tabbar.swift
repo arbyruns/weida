@@ -11,7 +11,7 @@ import SwiftUI
 struct Tabbar: View {
     var body: some View {
               TabView {
-                  ContentView().tabItem{
+                  ProgramView().tabItem{
                       Image(systemName: "play.circle.fill")
                       Text("Home")
                   }
