@@ -57,7 +57,7 @@ struct ProgramView: View {
                                 }
                                 .padding(30)
                             }
-                            NavigationLink(destination: Text("So Fit 2.0")) {
+                            NavigationLink(destination: SFF2()) {
                                 HStack {
                                     VStack {
                                         HStack {
