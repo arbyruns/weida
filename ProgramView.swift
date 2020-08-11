@@ -48,14 +48,14 @@ struct ProgramView: View {
                                             .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
                                         Spacer()
                                     }
-                                    .padding(.top, 20)
+                                    .padding(.top,  20)
                                     .padding(.horizontal, 20)
-                                    .frame(width: screen.width, height: 300)
+                                    .frame(width: screen.width - 30, height: 250)
                                     .background(Color("card6"))
                                     .cornerRadius(15)
-                                    .shadow(color: Color("card6").opacity(0.4), radius: 20, x: 0, y: 20)
+                                    .shadow(color: Color("card6").opacity(0.7), radius: 20, x: 0, y: 20)
                                 }
-                                .padding(30)
+                                .padding(10)
                             }
                             NavigationLink(destination: SFF2()) {
                                 HStack {
@@ -76,7 +76,7 @@ struct ProgramView: View {
                                         Text("12 Week Program")
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                             .foregroundColor(.black)
-                                        
+
 
                                         Image("program2")
                                             .renderingMode(.original)
@@ -89,12 +89,12 @@ struct ProgramView: View {
                                     }
                                     .padding(.top, 20)
                                     .padding(.horizontal, 20)
-                                    .frame(width: screen.width, height: 300)
+                                    .frame(width: screen.width - 30, height: 250)
                                     .background(Color("card6"))
                                     .cornerRadius(15)
-                                    .shadow(color: Color("card6").opacity(0.4), radius: 20, x: 0, y: 20)
+                                    .shadow(color: Color("card6").opacity(0.7), radius: 20, x: 0, y: 20)
                                 }
-                                .padding(20)
+                                .padding(10)
                             }
                             NavigationLink(destination: Lifts()) {
                                 HStack {
@@ -127,12 +127,12 @@ struct ProgramView: View {
                                     }
                                     .padding(.top, 20)
                                     .padding(.horizontal, 20)
-                                    .frame(width: screen.width, height: 300)
+                                    .frame(width: screen.width - 30, height: 250)
                                     .background(Color("card6"))
                                     .cornerRadius(15)
-                                    .shadow(color: Color("card6").opacity(0.4), radius: 20, x: 0, y: 20)
+                                    .shadow(color: Color("card6").opacity(0.7), radius: 20, x: 0, y: 20)
                                 }
-                                .padding(20)
+                                .padding(10)
                             }
                             NavigationLink(destination: Text("The Weida Way")) {
                                 HStack {
@@ -165,12 +165,12 @@ struct ProgramView: View {
                                     }
                                     .padding(.top, 20)
                                     .padding(.horizontal, 20)
-                                    .frame(width: screen.width, height: 300)
+                                    .frame(width: screen.width - 30, height: 250)
                                     .background(Color("card6"))
                                     .cornerRadius(15)
-                                    .shadow(color: Color("card6").opacity(0.4), radius: 20, x: 0, y: 20)
+                                    .shadow(color: Color("card6").opacity(0.7), radius: 20, x: 0, y: 20)
                                 }
-                                .padding(20)
+                                .padding(10)
                             }
                         }
                     }

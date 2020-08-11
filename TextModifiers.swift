@@ -22,5 +22,6 @@ struct ExerciseLabel: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding(.vertical, 20.0)
+            .frame(width: screen.width - 20)
     }
 }

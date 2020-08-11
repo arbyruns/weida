@@ -72,6 +72,7 @@ struct sff2tabview: View {
                             Text("Accessory")
                                 .modifier(WorkoutLabel())
                             Text(sffweeks[5].accessory)
+                                .modifier(ExerciseLabel())
                             Text("Conditioning")
                                 .modifier(WorkoutLabel())
                             Text(sffweeks[5].conditioning)
@@ -93,6 +94,7 @@ struct sff2tabview: View {
                             Text("Accessory")
                                 .modifier(WorkoutLabel())
                             Text(sffweeks[10].accessory)
+                                .modifier(ExerciseLabel())
                             Text("Conditioning")
                                 .modifier(WorkoutLabel())
                             Text(sffweeks[10].conditioning)
@@ -337,7 +339,6 @@ struct sff2tabview: View {
                             Text("Accessory")
                                 .modifier(WorkoutLabel())
                             Text(sffweeks[6].accessory)
-                                .modifier(ExerciseLabel())
                                 .modifier(ExerciseLabel())
                             Text("Conditioning")
                                 .modifier(WorkoutLabel())
@@ -974,7 +975,7 @@ struct sff2tabview: View {
                             Text("Conditioning")
                                 .modifier(WorkoutLabel())
                             Text(sffweeks[33].conditioning)
-                                .modifier(WorkoutLabel())
+                                .modifier(ExerciseLabel())
                             Spacer()
                         }
                     }
@@ -1217,7 +1218,7 @@ struct sff2tabview: View {
                             Text("Conditioning")
                                 .modifier(WorkoutLabel())
                             Text(sffweeks[29].conditioning)
-                                .modifier(WorkoutLabel())
+                                .modifier(ExerciseLabel())
                             Spacer()
                         }
                     }

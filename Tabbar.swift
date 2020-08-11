@@ -19,6 +19,10 @@ struct Tabbar: View {
                       Image(systemName: "hare")
                       Text("Fast Eddies")
                   }
+                Stats().tabItem {
+                    Image(systemName: "square.and.pencil")
+                    Text("Stats")
+                }
               }
           }
 }
