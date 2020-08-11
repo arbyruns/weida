@@ -76,6 +76,7 @@ struct ProgramView: View {
                                         Text("12 Week Program")
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                             .foregroundColor(.black)
+                                        
 
                                         Image("program2")
                                             .renderingMode(.original)
