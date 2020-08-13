@@ -9,22 +9,24 @@
 import SwiftUI
 
 struct Tabbar: View {
+
     var body: some View {
-              TabView {
-                  ProgramView().tabItem{
-                      Image(systemName: "play.circle.fill")
-                      Text("Home")
-                  }
-                  FastEddies().tabItem {
-                      Image(systemName: "hare")
-                      Text("Fast Eddies")
-                  }
-                Stats().tabItem {
-                    Image(systemName: "square.and.pencil")
-                    Text("Stats")
-                }
-              }
-          }
+        TabView {
+            ProgramView().tabItem{
+                Image(systemName: "play.circle.fill")
+                Text("Home")
+            }
+            FastEddies().tabItem {
+                Image(systemName: "hare")
+                Text("Fast Eddies")
+            }
+            .animation(.easeOut)
+            Stats().tabItem {
+                Image(systemName: "square.and.pencil")
+                Text("Stats")
+            }
+        }
+    }
 }
 
 struct Tabbar_Previews: PreviewProvider {

@@ -28,8 +28,11 @@ struct SFF2: View {
                                 .onAppear{
                                     print(cafes[index].title, cafes[index].text)
                                     self.activeTitle = cafes[index].title
+                                    UIImpactFeedbackGenerator(style: .medium)
+                                    .impactOccurred()
                             }
                         }
+                            
                             //I can use an else if for additional programs
                         else {
                             foo()
@@ -45,6 +48,10 @@ struct SFF2: View {
         }
     }
 }
+
+//.onTapGesture {
+//
+//}
 
 struct SFF2_Previews: PreviewProvider {
     static var previews: some View {

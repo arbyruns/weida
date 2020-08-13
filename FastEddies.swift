@@ -14,7 +14,6 @@ struct FastEddies: View {
     @State var viewState = CGSize.zero //storing a value of CGSize with xy position with value 0
     @State var showCard = false
     //listens to changes in stopwatchmanager class
-    @ObservedObject var stopWatchManager = StopWatchManager()
 
 
 
