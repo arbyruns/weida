@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AddLiftView: View {
     
-    var liftslist = ["Cow","Bench Press","Deadlift","Squat","Back Row","Strict Press"]
+    var liftslist = ["-","Bench Press","Deadlift","Squat","Back Row","Strict Press"]
 
     @State private var selectedlLiftsList = 0
     @State private var currentTab = 0
@@ -23,55 +23,62 @@ struct AddLiftView: View {
 
     var body: some View {
         VStack {
-//            NavigationView {
-//                Form{
-                    List {
-                        Section(header: Text("Max Rep")){
-                            Picker(selection: $selectedlLiftsList, label: Text("Select Lift")) {
-                                ForEach(0 ..< liftslist.count ){
-                                    Text(self.liftslist[$0])
-                                }
-                            }
-                            HStack{
-                                TextField("Weight", text: self.$newStatItemWeight)
-                                    .keyboardType(.numberPad)
-                                Button(action: {
-                                    guard self.newStatItemWeight.count > 0 else {return}
-                                    guard  self.liftslist[self.selectedlLiftsList] == "Cow" else { return }
-                                    let statItem = StatItem(context: self.managedObjectContext)
-                                    statItem.lift = self.liftslist[self.selectedlLiftsList]
-                                    statItem.createdAt = Date()
-                                    statItem.weight = self.newStatItemWeight
-
-                                    do {
-                                        try self.managedObjectContext.save()
-                                        print("we saved \(self.newStatItemWeight)" )
-                                    }catch{
-                                        print(error)
-                                        print("We didn't save \(self.newStatItemWeight)")
-                                    }
-
-                                    self.newStatItemWeight = "" //this cleans the item
-                                })
-                                {
-                                    Image(systemName: "plus.circle.fill")
-                                        .foregroundColor(.green)
-                                        .imageScale(.large)
-
-                                }
-                            }
+            VStack {
+                Section(header: Text("Select a lift")
+                    .padding(.top, 50)){
+                    Picker(selection: $selectedlLiftsList, label: Text("Select Lift")) {
+                        ForEach(0 ..< liftslist.count ){
+                            Text(self.liftslist[$0])
                         }
-                        .labelsHidden()
-                        .font(.headline)
                     }
-//                }
-//            }
+                }
+                .labelsHidden()
+                .font(.title)
+                HStack{
+                    TextField("Weight", text: self.$newStatItemWeight)
+                        .padding(.vertical, 15)
+                        .keyboardType(.numberPad)
+                    Button(action: {
+                        guard self.newStatItemWeight.count > 0 else {
+                            return
+                        }
+                        guard self.liftslist[self.selectedlLiftsList] != "-" else { return
+
+                            print("pick a lift")
+
+                        }
+                        let statItem = StatItem(context: self.managedObjectContext)
+                        statItem.lift = self.liftslist[self.selectedlLiftsList]
+                        statItem.createdAt = Date()
+                        statItem.weight = self.newStatItemWeight
+
+                        do {
+                            try self.managedObjectContext.save()
+                            print("we saved \(self.newStatItemWeight)" )
+                        }catch{
+                            print(error)
+                            print("We didn't save \(self.newStatItemWeight)")
+                        }
+
+                        self.newStatItemWeight = "" //this cleans the item
+                    })
+                    {
+                        Image(systemName: "plus.circle.fill")
+                            .foregroundColor(.green)
+                            .imageScale(.large)
+
+                    }
+                }
+                .frame(width: 250)
+                Spacer()
+            }
+
         }
     }
 }
 
-        struct foo_Previews: PreviewProvider {
-            static var previews: some View {
-                AddLiftView()
-            }
-        }
+struct foo_Previews: PreviewProvider {
+    static var previews: some View {
+        AddLiftView()
+    }
+}
