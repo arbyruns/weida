@@ -35,7 +35,7 @@ struct SFF2: View {
                             
                             //I can use an else if for additional programs
                         else {
-                            foo()
+                            AddLiftView()
                         }
                     }
                 }())

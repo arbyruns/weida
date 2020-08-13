@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct foo: View {
+struct AddLiftView: View {
     
     var liftslist = ["Cow","Bench Press","Deadlift","Squat","Back Row","Strict Press"]
 
@@ -72,6 +72,6 @@ struct foo: View {
 
         struct foo_Previews: PreviewProvider {
             static var previews: some View {
-                foo()
+                AddLiftView()
             }
         }

@@ -41,11 +41,11 @@ struct Stats: View {
                             .frame(width: 36, height: 36)
                             .background(Color("background3"))
                             .clipShape(Circle())
-                            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                            .shadow(color: Color("secondary").opacity(0.1), radius: 1, x: 0, y: 1)
+                            .shadow(color: Color("secondary").opacity(0.2), radius: 10, x: 0, y: 10)
                     }
                     .sheet(isPresented: $showFoo) {
-                        foo()
+                        AddLiftView()
                             .environment(\.managedObjectContext, self.managedObjectContext) //this is the persistent store needed to add data.
                     }, trailing: EditButton())
             }
