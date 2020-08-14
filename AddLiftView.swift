@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AddLiftView: View {
-    
+
     var liftslist = ["-","Bench Press","Deadlift","Squat","Back Row","Strict Press"]
 
     @State private var selectedlLiftsList = 0
@@ -22,8 +22,8 @@ struct AddLiftView: View {
     @FetchRequest(fetchRequest: StatItem.getStatItems()) var statItems:FetchedResults<StatItem>
 
     var body: some View {
-        VStack {
-            VStack {
+        NavigationView {
+            Form {
                 Section(header: Text("Select a lift")
                     .padding(.top, 50)){
                     Picker(selection: $selectedlLiftsList, label: Text("Select Lift")) {
@@ -33,7 +33,7 @@ struct AddLiftView: View {
                     }
                 }
                 .labelsHidden()
-                .font(.title)
+                .font(.headline)
                 HStack{
                     TextField("Weight", text: self.$newStatItemWeight)
                         .padding(.vertical, 15)
@@ -69,10 +69,14 @@ struct AddLiftView: View {
 
                     }
                 }
-                .frame(width: 250)
-                Spacer()
+//                .frame(width: 250)
+                HStack {
+                    Spacer()
+                    Text("Enter New 1 Rep Max")
+                        .font(.caption)
+                    Spacer()
+                }
             }
-
         }
     }
 }

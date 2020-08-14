@@ -9,17 +9,19 @@
 import SwiftUI
 
 struct StatItemView: View {
+
     var lift:String = ""
     var createdAt:String = ""
     var weight:String = ""
 
     var body: some View {
         HStack {
-            Text(lift)
-                .font(.headline)
-            Spacer()
-            Text(createdAt)
-                .font(.caption)
+            VStack(alignment: .leading) {
+                Text(lift)
+                    .font(.headline)
+                Text(createdAt)
+                    .font(.caption)
+            }
             Spacer()
             Divider()
             Text("\(weight) lbs")
@@ -35,3 +37,4 @@ struct StatItemView_Previews: PreviewProvider {
         StatItemView(lift: "Bench", createdAt: "Today", weight: "125")
     }
 }
+

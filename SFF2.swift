@@ -16,8 +16,8 @@ struct SFF2: View {
     @State var activeIndex = -1
     @State var activeTitle = ""
     @State var activeWeek = -1
-
-
+    
+    
     var body: some View {
         List(cafes.indices, id: \.self) { index in
             if (0...12).contains(index){
@@ -29,7 +29,7 @@ struct SFF2: View {
                                     print(cafes[index].title, cafes[index].text)
                                     self.activeTitle = cafes[index].title
                                     UIImpactFeedbackGenerator(style: .medium)
-                                    .impactOccurred()
+                                        .impactOccurred()
                             }
                         }
                             
@@ -42,10 +42,13 @@ struct SFF2: View {
                 {
                     weeksview(cafe: cafes[index])
                 }
-            } else {
+                .padding(.vertical, 15.0)
+            }
+            else {
                 Text("About \(index)")
             }
         }
+        .navigationBarTitle("So Fit 2.0")
     }
 }
 
@@ -60,9 +63,9 @@ struct SFF2_Previews: PreviewProvider {
 }
 
 struct weeksview: View {
-
+    
     var cafe : Cafe
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(cafe.title)

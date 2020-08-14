@@ -8,22 +8,46 @@
 
 import SwiftUI
 
+struct AnimatableSFImage: AnimatableModifier {
+    var size: CGFloat
+
+    var animatableData: CGFloat {
+        get { size }
+        set { size = newValue }
+    }
+
+    func body(content: Self.Content) -> some View {
+        content
+            .font(.system(size: size))
+    }
+}
+
+// helper extension
+extension Image {
+    func animatingSF(size: CGFloat) -> some View {
+        self.modifier(AnimatableSFImage(size: size))
+    }
+}
+
 struct Tabbar: View {
+
+    @State var enlargeIt1 = false
+    @State var enlargeIt2 = true
 
     var body: some View {
         TabView {
-            ProgramView().tabItem{
+            ProgramViewV2().tabItem{
                 Image(systemName: "play.circle.fill")
                 Text("Home")
-            }
-            FastEddies().tabItem {
-                Image(systemName: "hare")
-                Text("Fast Eddies")
             }
             .animation(.easeOut)
             Stats().tabItem {
                 Image(systemName: "square.and.pencil")
                 Text("Stats")
+            }
+            FastEddies().tabItem {
+                Image(systemName: "hare")
+                Text("Fast Eddies")
             }
         }
     }

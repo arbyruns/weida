@@ -28,7 +28,7 @@ struct sff2tabview: View {
                     Text("D5").tag(4)
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                .padding(.top)
+                .padding(.vertical, 30.0)
                 Divider()
                     .background(Color("background2"))
                     .frame(width: 400)
@@ -1359,8 +1359,8 @@ struct sff2tabview: View {
 
 struct sff2tabview_Previews: PreviewProvider {
     static var previews: some View {
-//        sff2tabview(activeIndex: .constant(-1), activeTitle: .constant("Week 1"), activeWeek: .constant(-1)).environment(\.colorScheme, .dark)
-                sff2tabview(activeIndex: .constant(-1), activeTitle: .constant("Week 1"), activeWeek: .constant(-1))
+        sff2tabview(activeIndex: .constant(-1), activeTitle: .constant("Week 1"), activeWeek: .constant(-1)).environment(\.colorScheme, .dark)
+//                sff2tabview(activeIndex: .constant(-1), activeTitle: .constant("Week 1"), activeWeek: .constant(-1))
         //        sff2tabview()
     }
 }
