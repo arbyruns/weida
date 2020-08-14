@@ -17,10 +17,10 @@ struct StatItemView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(lift)
-                    .font(.headline)
-                Text(createdAt)
-                    .font(.caption)
+                    Text(lift)
+                        .font(.headline)
+                    Text(createdAt)
+                        .font(.caption)
             }
             Spacer()
             Divider()

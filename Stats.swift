@@ -29,9 +29,134 @@ struct Stats: View {
         ZStack {
             NavigationView {
                 Form{
-                    sectionview()
+                    //Back Row Section
+                            Section(header: Text("Back Row")){
+
+                                ForEach(self.statItems)
+                                {StatItem in
+                                    if StatItem.lift! == "Back Row"{
+                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.createdAt!)", weight: StatItem.weight ?? "0")
+                                    }
+                                }
+                                .onDelete {indexSet in
+                                    let deleteItem = self.statItems[indexSet.first!]
+                                    self.managedObjectContext.delete(deleteItem)
+
+                                    do {
+                                        try self.managedObjectContext.save()
+                                    }catch {
+                                        print(error) //update this error.
+                                    }
+                                }
+                    //            used to dismiss keyboard
+                                    .onTapGesture {
+                                        self.hideKeyboard()
+                                }
+                            }
+                            .font(.headline)
+                    //Back Row Section
+                            Section(header: Text("Bench Press")){
+
+                                ForEach(self.statItems)
+                                {StatItem in
+                                    if StatItem.lift! == "Bench Press"{
+                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.createdAt!)", weight: StatItem.weight ?? "0")
+                                    }
+                                }
+                                .onDelete {indexSet in
+                                    let deleteItem = self.statItems[indexSet.first!]
+                                    self.managedObjectContext.delete(deleteItem)
+
+                                    do {
+                                        try self.managedObjectContext.save()
+                                    }catch {
+                                        print(error) //update this error.
+                                    }
+                                }
+                    //            used to dismiss keyboard
+                                    .onTapGesture {
+                                        self.hideKeyboard()
+                                }
+                            }
+                            .font(.headline)
+                    //Deadlift Section
+                    Section(header: Text("Deadlift")){
+
+                                ForEach(self.statItems)
+                                {StatItem in
+                                    if StatItem.lift! == "Deadlift"{
+                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.createdAt!)", weight: StatItem.weight ?? "0")
+                                    }
+                                }
+                                .onDelete {indexSet in
+                                    let deleteItem = self.statItems[indexSet.first!]
+                                    self.managedObjectContext.delete(deleteItem)
+
+                                    do {
+                                        try self.managedObjectContext.save()
+                                    }catch {
+                                        print(error) //update this error.
+                                    }
+                                }
+                    //            used to dismiss keyboard
+                                    .onTapGesture {
+                                        self.hideKeyboard()
+                                }
+                            }
+                            .font(.headline)
+                    //Deadlift Section
+                    Section(header: Text("Squat")){
+
+                                ForEach(self.statItems)
+                                {StatItem in
+                                    if StatItem.lift! == "Squat"{
+                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.createdAt!)", weight: StatItem.weight ?? "0")
+                                    }
+                                }
+                                .onDelete {indexSet in
+                                    let deleteItem = self.statItems[indexSet.first!]
+                                    self.managedObjectContext.delete(deleteItem)
+
+                                    do {
+                                        try self.managedObjectContext.save()
+                                    }catch {
+                                        print(error) //update this error.
+                                    }
+                                }
+                    //            used to dismiss keyboard
+                                    .onTapGesture {
+                                        self.hideKeyboard()
+                                }
+                            }
+                            .font(.headline)
+                    //Strict Press Section
+                    Section(header: Text("Strict Press")){
+
+                                ForEach(self.statItems)
+                                {StatItem in
+                                    if StatItem.lift! == "Squat"{
+                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.createdAt!)", weight: StatItem.weight ?? "0")
+                                    }
+                                }
+                                .onDelete {indexSet in
+                                    let deleteItem = self.statItems[indexSet.first!]
+                                    self.managedObjectContext.delete(deleteItem)
+
+                                    do {
+                                        try self.managedObjectContext.save()
+                                    }catch {
+                                        print(error) //update this error.
+                                    }
+                                }
+                    //            used to dismiss keyboard
+                                    .onTapGesture {
+                                        self.hideKeyboard()
+                                }
+                            }
+                            .font(.headline)
+
                 }
-                    .navigationBarTitle(Text("My Lifts"))
+                .navigationBarTitle(Text("1 Rep Max"))
                     //button to add additional lifts
                     .navigationBarItems(leading: Button(action:{ self.showFoo.toggle() } ) {
                         Image(systemName: "plus.app")
@@ -49,53 +174,53 @@ struct Stats: View {
                             .environment(\.managedObjectContext, self.managedObjectContext) //this is the persistent store needed to add data.
                     }, trailing: EditButton())
             }
-                //this shows the bottom card.  Right now where it's at I can't delete data and messes up adding stats.  Need to fix this.
-//            .onTapGesture {
-//                self.showCard.toggle()
-//                print("show bottom card")
-//            }
-//            .gesture(
-//                DragGesture().onChanged {
-//                    value in self.viewState = value.translation
-//                    self.show = true
-//                }
-//                .onEnded { value in
-//                    self.viewState = .zero
-//                    self.show = false
-//                }
-//            )
-//
-//            //            Text("\(bottomState.height)").offset(y: -300)
-//
-//            //bottom card
-//            BottomCardView(show: $showCard)
-//                .offset(x: 0, y: showCard ? 360 : 900)
-//                .offset(y: bottomState.height)
-//                .blur(radius: show ? 20 : 0)
-//                .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8))
-//                .gesture(
-//                    DragGesture().onChanged { value in
-//                        self.bottomState = value.translation
-//                        if self.showFull {
-//                            self.bottomState.height += -300
-//                        }
-//                        if self.bottomState.height < -300 {
-//                            self.bottomState.height = -300
-//                        }
-//                    }
-//                    .onEnded { value in
-//                        if self.bottomState.height > 50 {
-//                            self.showCard = false
-//                        }
-//                        if (self.bottomState.height < -100 && !self.showFull) || (self.bottomState.height < -250 && self.showFull) {
-//                            self.bottomState.height = -300
-//                            self.showFull = true
-//                        } else {
-//                            self.bottomState = .zero
-//                            self.showFull = false
-//                        }
-//                    }
-//            )
+            //this shows the bottom card.  Right now where it's at I can't delete data and messes up adding stats.  Need to fix this.
+            //            .onTapGesture {
+            //                self.showCard.toggle()
+            //                print("show bottom card")
+            //            }
+            //            .gesture(
+            //                DragGesture().onChanged {
+            //                    value in self.viewState = value.translation
+            //                    self.show = true
+            //                }
+            //                .onEnded { value in
+            //                    self.viewState = .zero
+            //                    self.show = false
+            //                }
+            //            )
+            //
+            //            //            Text("\(bottomState.height)").offset(y: -300)
+            //
+            //            //bottom card
+            //            BottomCardView(show: $showCard)
+            //                .offset(x: 0, y: showCard ? 360 : 900)
+            //                .offset(y: bottomState.height)
+            //                .blur(radius: show ? 20 : 0)
+            //                .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8))
+            //                .gesture(
+            //                    DragGesture().onChanged { value in
+            //                        self.bottomState = value.translation
+            //                        if self.showFull {
+            //                            self.bottomState.height += -300
+            //                        }
+            //                        if self.bottomState.height < -300 {
+            //                            self.bottomState.height = -300
+            //                        }
+            //                    }
+            //                    .onEnded { value in
+            //                        if self.bottomState.height > 50 {
+            //                            self.showCard = false
+            //                        }
+            //                        if (self.bottomState.height < -100 && !self.showFull) || (self.bottomState.height < -250 && self.showFull) {
+            //                            self.bottomState.height = -300
+            //                            self.showFull = true
+            //                        } else {
+            //                            self.bottomState = .zero
+            //                            self.showFull = false
+            //                        }
+            //                    }
+            //            )
         }
     }
 }
@@ -119,64 +244,35 @@ extension View {
 struct BottomCardView: View {
     @Binding var show: Bool
 
-       var body: some View {
-            VStack (spacing: 20){
-                Rectangle()
-                    .frame(width: 40, height: 5)
-                    .cornerRadius(3)
-                    .opacity(0.1)
-
-                HStack(spacing: 20.0) {
-
-                    VStack(alignment: .leading, spacing: 8.0) {
-                        Text("Hey").fontWeight(.bold)
-                        Text("Something will go here")
-                            .font(.footnote)
-                            .foregroundColor(.gray)
-                            .lineSpacing(4)
-                    }
-                    .padding(20)
-                    .background(Color("background3"))
-                    .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 10)
-                }
-
-                Spacer()
-            }
-            .padding(.top, 8)
-            .padding(.horizontal, 20)
-            .frame(maxWidth: .infinity)
-            .background(BlurView(style: .systemThinMaterial))
-            .cornerRadius(30)
-            .shadow(radius: 20)
-        }
-    }
-
-
-struct sectionview: View {
-
-    @FetchRequest(fetchRequest: StatItem.getStatItems()) var statItems:FetchedResults<StatItem>
-    @Environment(\.managedObjectContext) var managedObjectContext
-
     var body: some View {
-        Section(header: Text("Lifts")){
-            ForEach(self.statItems){StatItem in
-                StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.createdAt!)", weight: StatItem.weight ?? "0")
-            }.onDelete {indexSet in
-                let deleteItem = self.statItems[indexSet.first!]
-                self.managedObjectContext.delete(deleteItem)
+        VStack (spacing: 20){
+            Rectangle()
+                .frame(width: 40, height: 5)
+                .cornerRadius(3)
+                .opacity(0.1)
 
-                do {
-                    try self.managedObjectContext.save()
-                }catch {
-                    print(error) //update this error.
+            HStack(spacing: 20.0) {
+
+                VStack(alignment: .leading, spacing: 8.0) {
+                    Text("Hey").fontWeight(.bold)
+                    Text("Something will go here")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .lineSpacing(4)
                 }
+                .padding(20)
+                .background(Color("background3"))
+                .cornerRadius(20)
+                .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 10)
             }
-            //used to dismiss keyboard
-            //                    .onTapGesture {
-            //                        self.hideKeyboard()
-            //                    }
+
+            Spacer()
         }
-        .font(.headline)
+        .padding(.top, 8)
+        .padding(.horizontal, 20)
+        .frame(maxWidth: .infinity)
+        .background(BlurView(style: .systemThinMaterial))
+        .cornerRadius(30)
+        .shadow(radius: 20)
     }
 }
