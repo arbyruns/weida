@@ -18,7 +18,6 @@ struct ProgramViewV2: View {
                 HStack {
                     ScrollView( showsIndicators: false) {
                         VStack {
-                            
                             //I removed the foreach because I'm limited in knowledge and no idea how to get navlink to go to different views.  Reddit and stackoverflow(no duh) hasn't been much help.
                             NavigationLink(destination: Text("So Fit 1.0 - Coming Soon")) {
                                 ZStack {

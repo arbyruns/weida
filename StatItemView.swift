@@ -31,10 +31,15 @@ struct StatItemView: View {
     }
 }
 
-
 struct StatItemView_Previews: PreviewProvider {
     static var previews: some View {
         StatItemView(lift: "Bench", createdAt: "Today", weight: "125")
     }
 }
 
+func stringToDate(convertDate: String) {
+
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM d, yyyy" //You can change this
+    let dateString = formatter.string(for: convertDate)
+}

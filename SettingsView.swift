@@ -10,19 +10,19 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-//            UIApplication.shared.open(URL(string:"https://www.apple.com")!)
+        //            UIApplication.shared.open(URL(string:"https://www.apple.com")!)
 
-            NavigationView {
+        NavigationView {
                 List {
                     ForEach(settingData) { setting in
                         Settingslistview(setting: setting)
                     }
                     NavigationLink(destination: Text("About")){
-                            Text("About")
+                        Text("About")
                     }
                 }
                 .navigationBarTitle("Settings")
-            }
+        }
     }
 }
 
@@ -51,7 +51,7 @@ struct Settingslistview: View {
             Spacer()
             Image(systemName: "chevron.right")
                 .font(.system(size: 14, weight: .medium))
-//                .font(.caption)
+                //                .font(.caption)
                 .foregroundColor(Color(#colorLiteral(red: 0.7673492432, green: 0.7673417926, blue: 0.7748472095, alpha: 1)))
         }
     }

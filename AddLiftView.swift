@@ -47,7 +47,13 @@ struct AddLiftView: View {
                             print("pick a lift")
 
                         }
+                        //formatting the date here
+//                        let formatter = DateFormatter()
+//                        formatter.dateFormat = "MMM d, yyyy" //You can change this
+//                        let dateString = formatter.string(from: Date())
+
                         let statItem = StatItem(context: self.managedObjectContext)
+
                         statItem.lift = self.liftslist[self.selectedlLiftsList]
                         statItem.createdAt = Date()
                         statItem.weight = self.newStatItemWeight
