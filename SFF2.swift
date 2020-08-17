@@ -24,6 +24,7 @@ struct SFF2: View {
     
     var body: some View {
         VStack {
+            //weeks is the object array where Week is the object in the array
             List(weeks, id: \.id) {weeks in
                         NavigationLink(destination: {
                             VStack{
@@ -38,7 +39,7 @@ struct SFF2: View {
                             }
                         }())
                         {
-                            weeksview(week: weeks)
+                            weeksview(week: weeks) //week is defined in weeksview as the var. weeks is the object array []
                         }
                         .padding(.vertical, 15.0)
             }
