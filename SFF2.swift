@@ -16,45 +16,41 @@ struct SFF2: View {
     @State var activeIndex = -1
     @State var activeTitle = ""
     @State var activeWeek = -1
-    
+    @State var showFavoritesOnly = true
+
+
+    //This is determine favorites
+//    if !self.showFavoritesOnly  || cafes[index].isFavorite == false{
     
     var body: some View {
-        List(cafes.indices, id: \.self) { index in
-            if (0...12).contains(index){
-                NavigationLink(destination: {
-                    VStack{
-                        if cafes[index].title.contains("Week") {
-                            sff2tabview(activeIndex: self.$activeIndex, activeTitle: self.$activeTitle, activeWeek: self.$activeWeek)
-                                .onAppear{
-                                    print(cafes[index].title, cafes[index].text)
-                                    self.activeTitle = cafes[index].title
-                                    UIImpactFeedbackGenerator(style: .medium)
-                                        .impactOccurred()
+        VStack {
+            List(weeks, id: \.id) {weeks in
+                        NavigationLink(destination: {
+                            VStack{
+                                    sff2tabview(activeIndex: self.$activeIndex, activeTitle: self.$activeTitle, activeWeek: self.$activeWeek)
+                                        //haptic feedback
+                                        .onAppear{
+                                            print(weeks.title, weeks.text)
+                                            self.activeTitle = weeks.title
+                                            UIImpactFeedbackGenerator(style: .medium)
+                                                .impactOccurred()
+                                    }
                             }
+                        }())
+                        {
+                            weeksview(week: weeks)
                         }
-                            
-                            //I can use an else if for additional programs
-                        else {
-                            AddLiftView()
-                        }
-                    }
-                }())
-                {
-                    weeksview(cafe: cafes[index])
-                }
-                .padding(.vertical, 15.0)
+                        .padding(.vertical, 15.0)
             }
-            else {
-                Text("About \(index)")
-            }
+            .navigationBarTitle("So Fit 2.0")
+            .navigationBarItems(trailing: Toggle(isOn: self.$showFavoritesOnly) {
+                Text("Favorites")
+            })
+
         }
-        .navigationBarTitle("So Fit 2.0")
     }
 }
 
-//.onTapGesture {
-//
-//}
 
 struct SFF2_Previews: PreviewProvider {
     static var previews: some View {
@@ -64,39 +60,49 @@ struct SFF2_Previews: PreviewProvider {
 
 struct weeksview: View {
     
-    var cafe : Cafe
+    var week : Week
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(cafe.title)
-                .font(.headline)
-            Text(cafe.text)
-                .font(.subheadline)
+        HStack {
+            VStack(alignment: .leading) {
+                Text(week.title)
+                    .font(.headline)
+                Text(week.text)
+                    .font(.subheadline)
+
+            }
+            Spacer()
+            if week.isFavorite {
+                Image(systemName: "star.fill")
+                    .imageScale(.medium)
+                    .foregroundColor(.yellow)
+            }
         }
     }
 }
 
 
-struct Cafe: Identifiable {
+struct Week: Identifiable {
     var id = UUID()
     var title: String
     var text: String
     var image: String
     var week: Int
     var show: Bool
+    var isFavorite: Bool
 }
 
-let cafes = [
-    Cafe(title:"Week 1", text:"SFF v2.0", image:"SoFuckingFit2.0_(week_1)", week: 2, show: false),
-    Cafe(title:"Week 2", text:"SFF v2.0", image: "SoFuckingFit2.0_(week2)", week: 3, show: false),
-    Cafe(title:"Week 3", text:"SFF v2.0", image:"SoFuckingFit2.0_(week3)", week: 4, show: false),
-    Cafe(title:"Week 4", text:"SFF v2.0", image:"SoFuckingFit2.0_(week4)", week: 5, show: false),
-    Cafe(title:"Week 5", text:"SFF v2.0", image:"SoFuckingFit2.0_(week5)", week: 6, show: false),
-    Cafe(title:"Week 6", text:"SFF v2.0", image:"SoFuckingFit2.0_(week6)", week: 7, show: false),
-    Cafe(title:"Week 7", text:"SFF v2.0", image: "SoFuckingFit2.0_(week7)", week: 8, show: false),
-    Cafe(title:"Week 8", text:"SFF v2.0", image:"SoFuckingFit2.0_(week8)", week: 9, show: false),
-    Cafe(title:"Week 9", text:"SFF v2.0", image:"SoFuckingFit2.0_(week9)", week: 10, show: false),
-    Cafe(title:"Week 10", text:"SFF v2.0", image:"SoFuckingFit2.0_(week10)", week: 11, show: false),
-    Cafe(title:"Week 11", text:"SFF v2.0", image:"SoFuckingFit2.0_(week11)", week: 12, show: false),
-    Cafe(title:"Week 12", text:"Test Week", image:"SoFuckingFit2.0_(week12)", week: 13, show: false)
+let weeks = [
+    Week(title:"Week 1", text:"SFF v2.0", image:"SoFuckingFit2.0_(week_1)", week: 2, show: false ,isFavorite: false),
+    Week(title:"Week 2", text:"SFF v2.0", image: "SoFuckingFit2.0_(week2)", week: 3, show: false, isFavorite: true),
+    Week(title:"Week 3", text:"SFF v2.0", image:"SoFuckingFit2.0_(week3)", week: 4, show: false, isFavorite: true),
+    Week(title:"Week 4", text:"SFF v2.0", image:"SoFuckingFit2.0_(week4)", week: 5, show: false, isFavorite: false),
+    Week(title:"Week 5", text:"SFF v2.0", image:"SoFuckingFit2.0_(week5)", week: 6, show: false, isFavorite: false),
+    Week(title:"Week 6", text:"SFF v2.0", image:"SoFuckingFit2.0_(week6)", week: 7, show: false, isFavorite: false),
+    Week(title:"Week 7", text:"SFF v2.0", image: "SoFuckingFit2.0_(week7)", week: 8, show: false, isFavorite: false),
+    Week(title:"Week 8", text:"SFF v2.0", image:"SoFuckingFit2.0_(week8)", week: 9, show: false, isFavorite: false),
+    Week(title:"Week 9", text:"SFF v2.0", image:"SoFuckingFit2.0_(week9)", week: 10, show: false, isFavorite: false),
+    Week(title:"Week 10", text:"SFF v2.0", image:"SoFuckingFit2.0_(week10)", week: 11, show: false, isFavorite: false),
+    Week(title:"Week 11", text:"SFF v2.0", image:"SoFuckingFit2.0_(week11)", week: 12, show: false, isFavorite: false),
+    Week(title:"Week 12", text:"Test Week", image:"SoFuckingFit2.0_(week12)", week: 13, show: false, isFavorite: false)
 ]

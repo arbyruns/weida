@@ -30,7 +30,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // let contentView = SFF2()
             let contentView = SplashView().environment(\.managedObjectContext, managedObjectContext)
 
-            window.rootViewController = UIHostingController(rootView: contentView)
+            window.rootViewController = UIHostingController(rootView: contentView
+            )
+
             self.window = window
             window.makeKeyAndVisible()
         }
