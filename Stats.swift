@@ -35,7 +35,7 @@ struct Stats: View {
                                 ForEach(self.statItems)
                                 {StatItem in
                                     if StatItem.lift! == "Back Row"{
-                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.createdAt!)", weight: StatItem.weight ?? "0")
+                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.formattedDate)", weight: StatItem.weight ?? "0")
                                     }
                                 }
                                 .onDelete {indexSet in
@@ -60,7 +60,7 @@ struct Stats: View {
                                 ForEach(self.statItems)
                                 {StatItem in
                                     if StatItem.lift! == "Bench Press"{
-                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.createdAt!)", weight: StatItem.weight ?? "0")
+                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.formattedDate)", weight: StatItem.weight ?? "0")
                                     }
                                 }
                                 .onDelete {indexSet in
@@ -85,7 +85,7 @@ struct Stats: View {
                                 ForEach(self.statItems)
                                 {StatItem in
                                     if StatItem.lift! == "Deadlift"{
-                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.createdAt!)", weight: StatItem.weight ?? "0")
+                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.formattedDate)", weight: StatItem.weight ?? "0")
                                     }
                                 }
                                 .onDelete {indexSet in
@@ -110,7 +110,7 @@ struct Stats: View {
                                 ForEach(self.statItems)
                                 {StatItem in
                                     if StatItem.lift! == "Squat"{
-                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.createdAt!)", weight: StatItem.weight ?? "0")
+                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.formattedDate)", weight: StatItem.weight ?? "0")
                                     }
                                 }
                                 .onDelete {indexSet in
@@ -134,8 +134,8 @@ struct Stats: View {
 
                                 ForEach(self.statItems)
                                 {StatItem in
-                                    if StatItem.lift! == "Squat"{
-                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.createdAt!)", weight: StatItem.weight ?? "0")
+                                    if StatItem.lift! == "Strict Press"{
+                                        StatItemView(lift: StatItem.lift!, createdAt: "\(StatItem.formattedDate)", weight: StatItem.weight ?? "0")
                                     }
                                 }
                                 .onDelete {indexSet in

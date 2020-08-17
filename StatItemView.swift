@@ -13,6 +13,7 @@ struct StatItemView: View {
     var lift:String = ""
     var createdAt:String = ""
     var weight:String = ""
+    var dateString:String = ""
 
     var body: some View {
         HStack {
@@ -20,7 +21,7 @@ struct StatItemView: View {
                     Text(lift)
                         .font(.headline)
                     Text(createdAt)
-                        .font(.caption)
+                        .font(.caption)                
             }
             Spacer()
             Divider()
@@ -33,13 +34,6 @@ struct StatItemView: View {
 
 struct StatItemView_Previews: PreviewProvider {
     static var previews: some View {
-        StatItemView(lift: "Bench", createdAt: "Today", weight: "125")
+        StatItemView(lift: "Bench", createdAt: "Today", weight: "125", dateString: "01/02/1983")
     }
 }
-
-//func stringToDate(convertDate: String) {
-//
-//    let formatter = DateFormatter()
-//    formatter.dateFormat = "MMM d, yyyy" //You can change this
-//    let dateString = formatter.string(for: convertDate)
-//}
