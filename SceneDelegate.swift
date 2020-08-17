@@ -28,10 +28,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             // Create the SwiftUI view that provides the window contents.
             // let contentView = SFF2()
-            let contentView = SplashView().environment(\.managedObjectContext, managedObjectContext)
+            let contentView = SplashView()
+                .environment(\.managedObjectContext, managedObjectContext)
+                .environmentObject(UserData())
 
-            window.rootViewController = UIHostingController(rootView: contentView
-            )
+                //.environmentObject(Userdata())
+
+            window.rootViewController = UIHostingController(rootView: contentView)
 
             self.window = window
             window.makeKeyAndVisible()

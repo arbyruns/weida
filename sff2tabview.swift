@@ -9,6 +9,13 @@
 import SwiftUI
 
 struct sff2tabview: View {
+    @EnvironmentObject var userData: UserData
+    var weeks: Week
+
+    var favoriteIndex: Int {
+        userData.week.firstIndex(where: { $0.id == weeks.id})!
+    }
+
     @State private var currentTab = 0
     @Binding var activeIndex: Int
     @Binding var activeTitle: String
@@ -17,8 +24,24 @@ struct sff2tabview: View {
     var body: some View {
         VStack {
             VStack {
-                Text(activeTitle)
-                    .font(.title)
+                HStack {
+                    Text(activeTitle)
+                        .font(.title)
+                    Button(action: {
+                         self.userData.week[self.favoriteIndex]
+                             .isFavorite.toggle()
+                     }){
+                         if self.userData.week[self.favoriteIndex]
+                         .isFavorite{
+                             Image(systemName: "star.fill")
+                                 .foregroundColor(Color.yellow)
+                         } else {
+                             Image(systemName: "star")
+                                 .foregroundColor(Color.gray)
+                         }
+                     }
+                }
+
                 Picker(selection: $currentTab, label: Text("")) {
                     //for now will use text, but should look for images
                     Text("D1").tag(0)
@@ -1359,7 +1382,10 @@ struct sff2tabview: View {
 
 struct sff2tabview_Previews: PreviewProvider {
     static var previews: some View {
-        sff2tabview(activeIndex: .constant(-1), activeTitle: .constant("Week 1"), activeWeek: .constant(-1)).environment(\.colorScheme, .dark)
+        sff2tabview(weeks: .init(title: "Week", text: "foo", image: "Wieda", week: 3, show: false, isFavorite: true)
+
+
+            , activeIndex: .constant(-1), activeTitle: .constant("Week 1"), activeWeek: .constant(-1)).environment(\.colorScheme, .dark)
 //                sff2tabview(activeIndex: .constant(-1), activeTitle: .constant("Week 1"), activeWeek: .constant(-1))
         //        sff2tabview()
     }

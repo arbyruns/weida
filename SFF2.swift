@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct SFF2: View {
+    //for tracking favorites
+    @EnvironmentObject var userData: UserData
+    @State var showFavoritesOnly = true
+
     //the binding is below in Liftview
     //    @State var ssf2 = Weeksff2Data //out data array
     @State var active  = false
@@ -16,7 +20,6 @@ struct SFF2: View {
     @State var activeIndex = -1
     @State var activeTitle = ""
     @State var activeWeek = -1
-    @State var showFavoritesOnly = true
 
 
     //This is determine favorites
@@ -25,10 +28,18 @@ struct SFF2: View {
     var body: some View {
         VStack {
             //weeks is the object array where Week is the object in the array
-            List(weeks, id: \.id) {weeks in
+            List{
+
+                Toggle(isOn: $userData.showFavoritesOnly) {
+                    Text("Favorites only")
+                }
+
+                //this transform the data into rows and hides non-favorites 
+                ForEach (userData.week){weeks in
+                    if !self.userData.showFavoritesOnly || weeks.isFavorite {
                         NavigationLink(destination: {
                             VStack{
-                                    sff2tabview(activeIndex: self.$activeIndex, activeTitle: self.$activeTitle, activeWeek: self.$activeWeek)
+                                sff2tabview(weeks: weeks, activeIndex: self.$activeIndex, activeTitle: self.$activeTitle, activeWeek: self.$activeWeek)
                                         //haptic feedback
                                         .onAppear{
                                             print(weeks.title, weeks.text)
@@ -39,15 +50,13 @@ struct SFF2: View {
                             }
                         }())
                         {
-                            weeksview(week: weeks) //week is defined in weeksview as the var. weeks is the object array []
+                            weeksview(weeks: weeks) //week is defined in weeksview as the var. weeks is the object array []
                         }
                         .padding(.vertical, 15.0)
             }
+        }
+        }
             .navigationBarTitle("So Fit 2.0")
-            .navigationBarItems(trailing: Toggle(isOn: self.$showFavoritesOnly) {
-                Text("Favorites")
-            })
-
         }
     }
 }
@@ -56,24 +65,30 @@ struct SFF2: View {
 struct SFF2_Previews: PreviewProvider {
     static var previews: some View {
         SFF2()
+            .environmentObject(UserData())
     }
 }
 
 struct weeksview: View {
-    
-    var week : Week
-    
+
+    @EnvironmentObject var userData: UserData
+    var weeks : Week
+
+    var favoriteIndex: Int {
+        userData.week.firstIndex(where: { $0.id == weeks.id})!
+    }
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(week.title)
+                Text(weeks.title)
                     .font(.headline)
-                Text(week.text)
+                Text(weeks.text)
                     .font(.subheadline)
 
             }
             Spacer()
-            if week.isFavorite {
+            if weeks.isFavorite {
                 Image(systemName: "star.fill")
                     .imageScale(.medium)
                     .foregroundColor(.yellow)
@@ -95,8 +110,8 @@ struct Week: Identifiable {
 
 let weeks = [
     Week(title:"Week 1", text:"SFF v2.0", image:"SoFuckingFit2.0_(week_1)", week: 2, show: false ,isFavorite: false),
-    Week(title:"Week 2", text:"SFF v2.0", image: "SoFuckingFit2.0_(week2)", week: 3, show: false, isFavorite: true),
-    Week(title:"Week 3", text:"SFF v2.0", image:"SoFuckingFit2.0_(week3)", week: 4, show: false, isFavorite: true),
+    Week(title:"Week 2", text:"SFF v2.0", image: "SoFuckingFit2.0_(week2)", week: 3, show: false, isFavorite: false),
+    Week(title:"Week 3", text:"SFF v2.0", image:"SoFuckingFit2.0_(week3)", week: 4, show: false, isFavorite: false),
     Week(title:"Week 4", text:"SFF v2.0", image:"SoFuckingFit2.0_(week4)", week: 5, show: false, isFavorite: false),
     Week(title:"Week 5", text:"SFF v2.0", image:"SoFuckingFit2.0_(week5)", week: 6, show: false, isFavorite: false),
     Week(title:"Week 6", text:"SFF v2.0", image:"SoFuckingFit2.0_(week6)", week: 7, show: false, isFavorite: false),

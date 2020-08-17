@@ -37,9 +37,9 @@ struct StatItemView_Previews: PreviewProvider {
     }
 }
 
-func stringToDate(convertDate: String) {
-
-    let formatter = DateFormatter()
-    formatter.dateFormat = "MMM d, yyyy" //You can change this
-    let dateString = formatter.string(for: convertDate)
-}
+//func stringToDate(convertDate: String) {
+//
+//    let formatter = DateFormatter()
+//    formatter.dateFormat = "MMM d, yyyy" //You can change this
+//    let dateString = formatter.string(for: convertDate)
+//}
