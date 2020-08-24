@@ -11,6 +11,7 @@ import SwiftUI
 struct ProgramViewV2: View {
 
     @State var showSettings = false
+    @State var tap = false
 
     var body: some View {
         VStack {
@@ -34,6 +35,7 @@ struct ProgramViewV2: View {
                                             .frame(width: screen.width - 30)
                                             .foregroundColor(.white)
                                             .shadow(color: Color.black.opacity(0.8), radius: 20, x: 0, y: 20)
+                                            .scaleEffect(tap ? 1.2 : 1)
                                         Text("12 Week Program")
                                             .frame(maxWidth: .infinity)
                                             .font(.subheadline)
@@ -97,7 +99,6 @@ struct ProgramViewV2: View {
                     .navigationBarTitle("Weida", displayMode: .automatic)
                     .navigationBarItems(trailing: Button(action:{ self.showSettings.toggle() } ) {
                         Image(systemName: "bell")
-                            //                          .renderingMode(.original)
                             .foregroundColor(.primary)
                             .font(.system(size: 16, weight: .medium))
                             .frame(width: 36, height: 36)
@@ -105,7 +106,6 @@ struct ProgramViewV2: View {
                             .clipShape(Circle())
                             .shadow(color: Color("secondary").opacity(0.1), radius: 1, x: 0, y: 1)
                             .shadow(color: Color("secondary").opacity(0.2), radius: 1, x: 0, y: 5)
-
                     }
                     .sheet(isPresented: $showSettings) {
                         SettingsView()
