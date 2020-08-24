@@ -14,7 +14,8 @@ struct WorkoutLabel: ViewModifier {
             .font(.headline)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 15.0)
-            .background(Color("background3"))
+            .background(Color("background2"))
+        .cornerRadius(10)
     }
 }
 
