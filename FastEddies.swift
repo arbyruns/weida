@@ -66,6 +66,7 @@ struct FastEddies: View {
                         self.isDragging = false
                     }
             )
+            .padding(.horizontal, 10)
         }
     }
 }
