@@ -21,12 +21,6 @@ struct ProgramViewV2: View {
                             //I removed the foreach because I'm limited in knowledge and no idea how to get navlink to go to different views.  Reddit and stackoverflow(no duh) hasn't been much help.
                             NavigationLink(destination: Text("So Fit 1.0 - Coming Soon")) {
                                 ZStack {
-                                    Image("Weida")
-                                        .renderingMode(.original)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 45, height: 45)
-                                        .clipShape(Circle())
                                     Image("program1")
                                         .renderingMode(.original)
                                         .resizable()
@@ -50,12 +44,6 @@ struct ProgramViewV2: View {
                             }
                             NavigationLink(destination: SFF2()) {
                                 ZStack {
-                                    Image("Weida")
-                                        .renderingMode(.original)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 45, height: 45)
-                                        .clipShape(Circle())
                                     Image("program2")
                                         .renderingMode(.original)
                                         .resizable()
@@ -79,12 +67,6 @@ struct ProgramViewV2: View {
                             }
                             NavigationLink(destination: Lifts()) {
                                 ZStack {
-                                    Image("Weida")
-                                        .renderingMode(.original)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 45, height: 45)
-                                        .clipShape(Circle())
                                     Image("program5")
                                         .renderingMode(.original)
                                         .resizable()
