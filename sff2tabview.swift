@@ -12,34 +12,17 @@ struct sff2tabview: View {
     @EnvironmentObject var userData: UserData
     var weeks: Week
 
-    var favoriteIndex: Int {
-        userData.week.firstIndex(where: { $0.id == weeks.id})!
-    }
-
     @State private var currentTab = 0
     @Binding var activeIndex: Int
     @Binding var activeTitle: String
     @Binding var activeWeek: Int
-
+    
     var body: some View {
         VStack {
             VStack {
                 HStack {
                     Text(activeTitle)
                         .font(.title)
-                    Button(action: {
-                         self.userData.week[self.favoriteIndex]
-                             .isFavorite.toggle()
-                     }){
-                         if self.userData.week[self.favoriteIndex]
-                         .isFavorite{
-                             Image(systemName: "star.fill")
-                                 .foregroundColor(Color.yellow)
-                         } else {
-                             Image(systemName: "star")
-                                 .foregroundColor(Color.gray)
-                         }
-                     }
                 }
 
                 Picker(selection: $currentTab, label: Text("")) {

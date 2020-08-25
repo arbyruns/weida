@@ -30,9 +30,10 @@ struct SFF2: View {
             //weeks is the object array where Week is the object in the array
             List{
 
-                Toggle(isOn: $userData.showFavoritesOnly) {
-                    Text("Favorites only")
-                }
+                //Toggle for favorites
+//                Toggle(isOn: $userData.showFavoritesOnly) {
+//                    Text("Favorites only")
+//                }
 
                 //this transform the data into rows and hides non-favorites 
                 ForEach (userData.week){weeks in
@@ -42,7 +43,8 @@ struct SFF2: View {
                                 sff2tabview(weeks: weeks, activeIndex: self.$activeIndex, activeTitle: self.$activeTitle, activeWeek: self.$activeWeek)
                                         //haptic feedback
                                         .onAppear{
-                                            print(weeks.title, weeks.text)
+                                            //logging to troubleshoot why favorites aren't being saved.
+                                            print("User week picked: \(weeks.title), isfavorite: \(weeks.isFavorite), showfav Toggle: \(self.userData.showFavoritesOnly)")
                                             self.activeTitle = weeks.title
                                             UIImpactFeedbackGenerator(style: .medium)
                                                 .impactOccurred()
@@ -70,7 +72,6 @@ struct SFF2_Previews: PreviewProvider {
 }
 
 struct weeksview: View {
-
     @EnvironmentObject var userData: UserData
     var weeks : Week
 

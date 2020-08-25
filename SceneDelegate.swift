@@ -31,6 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let contentView = SplashView()
                 .environment(\.managedObjectContext, managedObjectContext)
                 .environmentObject(UserData())
+            print("App launching")
 
                 //.environmentObject(Userdata())
 
